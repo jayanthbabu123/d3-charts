@@ -3,11 +3,16 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { LinechartComponent } from './linechart/linechart.component';
+import { BarchatComponent } from './barchat/barchat.component';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LinechartComponent,
+    BarchatComponent
   ],
   imports: [
     BrowserModule
