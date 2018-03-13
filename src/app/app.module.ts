@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LinechartComponent } from './linechart/linechart.component';
 import { BarchatComponent } from './barchat/barchat.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 
 
@@ -12,7 +13,8 @@ import { BarchatComponent } from './barchat/barchat.component';
   declarations: [
     AppComponent,
     LinechartComponent,
-    BarchatComponent
+    BarchatComponent,
+    DonutChartComponent
   ],
   imports: [
     BrowserModule
