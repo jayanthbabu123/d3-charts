@@ -4,7 +4,7 @@ import * as d3Scale from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
-
+import { lineChart} from '../example';
 @Component({
   selector: 'app-linechart',
   templateUrl: './linechart.component.html',
@@ -12,7 +12,7 @@ import * as d3Axis from 'd3-axis';
 })
 
 export class LinechartComponent implements OnInit {
-  @Input() source;
+  public source = lineChart.chartData.lineGraphData;
   private margin = { top: 20, right: 20, bottom: 30, left: 50 };
   private width: number;
   private height: number;

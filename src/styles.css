@@ -34,4 +34,6 @@
     fill: brown;
   }
   
-  
+  .navbar {
+    border-radius: 0 !important;
+}

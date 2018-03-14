@@ -7,7 +7,4 @@ import { lineChart, barData, donutData } from './example';
 })
 export class AppComponent {
   title = 'app';
-  lineChart = lineChart.chartData.lineGraphData;
-  barData = barData.chartData.barChartData;
-  donutData = donutData;
 }
