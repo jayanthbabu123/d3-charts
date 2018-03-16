@@ -103,5 +103,4 @@ export class MultiLineChartComponent implements OnInit {
       .style("font", "10px sans-serif")
       .text(function(d) { return d.id; });
   }
-
 }
