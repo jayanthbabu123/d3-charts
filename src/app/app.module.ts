@@ -7,6 +7,8 @@ import { LinechartComponent } from './linechart/linechart.component';
 import { BarchatComponent } from './barchat/barchat.component';
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import {AppRoutingModule} from './app.routing.module';
+import { MultiLineChartComponent } from './multi-line-chart/multi-line-chart.component';
+import { MultiBarChartComponent } from './multi-bar-chart/multi-bar-chart.component';
 
 
 
@@ -15,7 +17,9 @@ import {AppRoutingModule} from './app.routing.module';
     AppComponent,
     LinechartComponent,
     BarchatComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    MultiLineChartComponent,
+    MultiBarChartComponent
   ],
   imports: [
     BrowserModule,
