@@ -5,7 +5,8 @@ import { BarchatComponent } from './barchat/barchat.component';
 import { LinechartComponent } from './linechart/linechart.component';
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import  {MultiLineChartComponent} from './multi-line-chart/multi-line-chart.component'
-import  {MultiBarChartComponent} from './multi-bar-chart/multi-bar-chart.component'
+import  {MultiBarChartComponent} from './multi-bar-chart/multi-bar-chart.component';
+import {GroupChartComponent} from './group-chart/group-chart.component';
 const appRoutes: Routes = [
   { path: '', component: BarchatComponent , pathMatch: 'full'},
   {
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
   {
     path:'multi-bar-chart',
     component: MultiBarChartComponent
+  },
+  {
+    path:'group-chart',
+    component: GroupChartComponent
   }
 
 ];
