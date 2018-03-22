@@ -3,7 +3,8 @@ import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
-import {  barData } from '../example';
+import * as d3Tip from 'd3-tip';
+import { barData } from '../example';
 @Component({
   selector: 'app-barchat',
   templateUrl: './barchat.component.html',
@@ -18,6 +19,7 @@ export class BarchatComponent implements OnInit {
   private y: any;
   private svg: any;
   private g: any;
+  private tip;
 
   public source = barData.chartData.barChartData;
 
@@ -44,6 +46,11 @@ export class BarchatComponent implements OnInit {
     this.y = d3Scale.scaleLinear().rangeRound([this.height, 0]);
     this.x.domain(this.source.numbers.map((d) => d.label));
     this.y.domain([0, d3Array.max(this.source.numbers, (d) => d.number)]);
+    this.tip = d3Tip().attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(d => {
+        return "<strong>"+d.label +"</strong> <span style='color:red'> year:" + d.number + "</span>";
+      })
   }
 
   private drawAxis() {
@@ -54,6 +61,7 @@ export class BarchatComponent implements OnInit {
     this.g.append("g")
       .attr("class", "axis axis--y")
       .call(d3Axis.axisLeft(this.y))
+      .call(this.tip)
       .append("text")
       .attr("class", "axis-title")
       .attr("transform", "rotate(-90)")
@@ -70,8 +78,8 @@ export class BarchatComponent implements OnInit {
       .attr("x", (d) => this.x(d.label))
       .attr("y", (d) => this.y(d.number))
       .attr("width", this.x.bandwidth())
-      .attr("height", (d) => this.height - this.y(d.number));
+      .attr("height", (d) => this.height - this.y(d.number))
+      .on('mouseover', this.tip.show)
+      .on('mouseout', this.tip.hide)
   }
-
-
 }

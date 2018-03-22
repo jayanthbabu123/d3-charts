@@ -52,6 +52,7 @@ export class LinechartComponent implements OnInit {
   private initAxis() {
     const tickValues = this.source.xaxisLabels.map((d, i) => i);
     const tickCount = tickValues.length;
+    const tooltip = d3.select('#tooltip');
     this.x = d3Scale.scaleLinear().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);
     this.x.domain(d3Array.extent(this.myOwn, (d) => d.label));
@@ -85,6 +86,4 @@ export class LinechartComponent implements OnInit {
       .attr("class", "line")
       .attr("d", this.line);
   }
-
-
 }
