@@ -53,6 +53,7 @@ export class BarchatComponent implements OnInit {
       })
   }
 
+  
   private drawAxis() {
     this.g.append("g")
       .attr("class", "axis axis--x")
