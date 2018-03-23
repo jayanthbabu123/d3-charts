@@ -12,7 +12,7 @@ import { lineChart} from '../example';
 })
 
 export class LinechartComponent implements OnInit {
-  public source = lineChart.chartData.lineGraphData;
+  public source = lineChart.data[0].values;
   private margin = { top: 20, right: 20, bottom: 30, left: 50 };
   private width: number;
   private height: number;
@@ -33,8 +33,8 @@ export class LinechartComponent implements OnInit {
 
   initData() {
     if (this.source) {
-      this.source.lines[0].forEach((value, index) => {
-        this.myOwn.push({ label: index + 1, value: value.number, display: value.for })
+      this.source.forEach((value, index) => {
+        this.myOwn.push({ label: index + 1, value: value.y, display: value.x })
       });
       this.initSvg();
       this.initAxis();
@@ -50,8 +50,6 @@ export class LinechartComponent implements OnInit {
   }
 
   private initAxis() {
-    const tickValues = this.source.xaxisLabels.map((d, i) => i);
-    const tickCount = tickValues.length;
     const tooltip = d3.select('#tooltip');
     this.x = d3Scale.scaleLinear().range([0, this.width]);
     this.y = d3Scale.scaleLinear().range([this.height, 0]);

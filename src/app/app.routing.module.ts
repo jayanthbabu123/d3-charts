@@ -7,6 +7,7 @@ import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import  {MultiLineChartComponent} from './multi-line-chart/multi-line-chart.component'
 import  {MultiBarChartComponent} from './multi-bar-chart/multi-bar-chart.component';
 import {GroupChartComponent} from './group-chart/group-chart.component';
+import {AreaChartComponent} from './area-chart/area-chart.component';
 const appRoutes: Routes = [
   { path: '', component: BarchatComponent , pathMatch: 'full'},
   {
@@ -28,6 +29,10 @@ const appRoutes: Routes = [
   {
     path:'group-chart',
     component: GroupChartComponent
+  },
+  {
+    path: 'area-chart',
+    component: AreaChartComponent
   }
 
 ];

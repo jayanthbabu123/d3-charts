@@ -5,7 +5,7 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import * as d3Collection from 'd3-collection';
 import * as _ from 'lodash';
-import { groupChartData } from '../example';
+import { groupedBarChartData } from '../example';
 
 @Component({
   selector: 'app-group-chart',
@@ -25,7 +25,7 @@ export class GroupChartComponent implements OnInit {
   private g: any;
   private options;
   private maxNumberOfKeys;
-  private source = groupChartData;
+  private source = groupedBarChartData.data[0].values;
 
   constructor() {
 
@@ -60,7 +60,7 @@ export class GroupChartComponent implements OnInit {
     this.y = d3Scale.scaleLinear().rangeRound([this.height, 0]);
     this.z = d3Scale.scaleOrdinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
     this.options = d3Collection.keys(this.source[this.maxNumberOfKeys]).filter((key) => { return key !== "label"; });
-    this.x0.domain(this.source.map((d) => { return d.label; }));
+    this.x0.domain(this.source.map((d) => { return d.x; }));
     this.x1.domain(this.options).rangeRound([0, this.x0.bandwidth()]);
     this.y.domain([0, d3Array.max(this.source, (d) => { return d3Array.max(this.options, (key) => { return d[key]; }); })]);
   }
@@ -88,7 +88,7 @@ export class GroupChartComponent implements OnInit {
       .data(this.source)
       .enter().append('g')
       .attr('class', 'rect')
-      .attr('transform', (d) => { return "translate(" + this.x0(d.label) + ",0)"; })
+      .attr('transform', (d) => { return "translate(" + this.x0(d.x) + ",0)"; })
       .selectAll('rect')
       .data((d) => { return this.options.map((key) => { return { key: key, value: d[key] ? d[key] : 0 }; }); })
       .enter().append("rect")

@@ -19,7 +19,7 @@ export class DonutChartComponent implements OnInit {
   private color: any;
   private g: any;
   private newData=[];
-  public source = donutData;
+  public source = donutData.data[0].values;
   constructor() {}
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class DonutChartComponent implements OnInit {
       
       this.pie = d3Shape.pie()
           .sort(null)
-          .value((d: any) => d.population);
+          .value((d: any) => d.y);
       
       this.svg = d3.select("svg")
           .append("g")
@@ -59,12 +59,12 @@ export class DonutChartComponent implements OnInit {
 
       g.append("path")
           .attr("d", this.arc)
-          .style("fill", d => this.color(d.data.age));
+          .style("fill", d => this.color(d.data.c));
           
       g.append("text")
           .attr("transform", d => "translate(" + this.arc.centroid(d) + ")")
           .attr("dy", ".35em")
-          .text(d => d.data.age);
+          .text(d => d.data.c);
   }
 
 

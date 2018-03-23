@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app.routing.module';
 import { MultiLineChartComponent } from './multi-line-chart/multi-line-chart.component';
 import { MultiBarChartComponent } from './multi-bar-chart/multi-bar-chart.component';
 import { GroupChartComponent } from './group-chart/group-chart.component';
+import { AreaChartComponent } from './area-chart/area-chart.component';
 
 
 
@@ -21,7 +22,8 @@ import { GroupChartComponent } from './group-chart/group-chart.component';
     DonutChartComponent,
     MultiLineChartComponent,
     MultiBarChartComponent,
-    GroupChartComponent
+    GroupChartComponent,
+    AreaChartComponent
   ],
   imports: [
     BrowserModule,

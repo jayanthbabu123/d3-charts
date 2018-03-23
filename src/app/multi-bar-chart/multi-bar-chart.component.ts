@@ -4,7 +4,7 @@ import * as d3Scale from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 import * as d3Axis from 'd3-axis';
 import * as d3Array from 'd3-array';
-import { multiBarChartData } from '../example';
+import { stackedBarChartData } from '../example';
 export interface Margin {
     top: number;
     right: number;
@@ -37,7 +37,7 @@ export class MultiBarChartComponent implements OnInit {
     ngOnInit() {
         this.initMargins();
         this.initSvg();
-        this.drawChart(multiBarChartData);
+        this.drawChart(stackedBarChartData.data[0].values);
     }
 
     private initMargins() {
@@ -71,7 +71,7 @@ export class MultiBarChartComponent implements OnInit {
         });
         data.sort((a: any, b: any) => b.total - a.total);
 
-        this.x.domain(data.map((d: any) => d.State));
+        this.x.domain(data.map((d: any) => d.x));
         this.y.domain([0, d3Array.max(data, (d: any) => d.total)]).nice();
         this.z.domain(keys);
 
@@ -83,7 +83,7 @@ export class MultiBarChartComponent implements OnInit {
             .selectAll("rect")
             .data(d => d)
             .enter().append("rect")
-            .attr("x", d => this.x(d.data.State))
+            .attr("x", d => this.x(d.data.x))
             .attr("y", d => this.y(d[1]))
             .attr("height", d => this.y(d[0]) - this.y(d[1]))
             .attr("width", this.x.bandwidth());

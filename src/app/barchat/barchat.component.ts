@@ -21,7 +21,7 @@ export class BarchatComponent implements OnInit {
   private g: any;
   private tip;
 
-  public source = barData.chartData.barChartData;
+  public source = barData.data[0].values;
 
 
   constructor() { }
@@ -44,12 +44,12 @@ export class BarchatComponent implements OnInit {
   private initAxis() {
     this.x = d3Scale.scaleBand().rangeRound([0, this.width]).padding(0.1);
     this.y = d3Scale.scaleLinear().rangeRound([this.height, 0]);
-    this.x.domain(this.source.numbers.map((d) => d.label));
-    this.y.domain([0, d3Array.max(this.source.numbers, (d) => d.number)]);
+    this.x.domain(this.source.map((d) => d.x));
+    this.y.domain([0, d3Array.max(this.source, (d) => d.y)]);
     this.tip = d3Tip().attr('class', 'd3-tip')
       .offset([-10, 0])
       .html(d => {
-        return "<strong>"+d.label +"</strong> <span style='color:red'> year:" + d.number + "</span>";
+        return "<strong>"+d.x +"</strong> <span style='color:red'> year:" + d.y + "</span>";
       })
   }
 
@@ -72,13 +72,13 @@ export class BarchatComponent implements OnInit {
 
   private drawBars() {
     this.g.selectAll(".bar")
-      .data(this.source.numbers)
+      .data(this.source)
       .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", (d) => this.x(d.label))
-      .attr("y", (d) => this.y(d.number))
+      .attr("x", (d) => this.x(d.x))
+      .attr("y", (d) => this.y(d.y))
       .attr("width", this.x.bandwidth())
-      .attr("height", (d) => this.height - this.y(d.number))
+      .attr("height", (d) => this.height - this.y(d.y))
       .on('mouseover', this.tip.show)
       .on('mouseout', this.tip.hide)
   }
